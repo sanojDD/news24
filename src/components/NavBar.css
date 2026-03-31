@@ -1,0 +1,92 @@
+/* src/components/Navbar.css */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  height: 70px;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px); /* The Glass effect */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 2000;
+  width: 100%;
+}
+
+/* Logo Styling */
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: -1px;
+}
+
+.logo-text span {
+  color: #fe2c55; /* The TukTuk Red */
+}
+
+/* Links Container */
+.nav-links {
+  display: flex;
+  gap: 30px;
+  height: 100%;
+  align-items: center;
+}
+
+.nav-item {
+  color: #aaa;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  position: relative;
+  transition: color 0.3s ease;
+  padding: 10px 0;
+}
+
+.nav-item:hover {
+  color: #fff;
+}
+
+/* The Glowing Active State */
+.nav-item.active {
+  color: #fff;
+}
+
+.nav-item.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #fe2c55;
+  box-shadow: 0 0 10px #fe2c55;
+  border-radius: 10px;
+}
+
+/* Right Side (Username) */
+.user-status {
+  color: #fff;
+  font-size: 0.8rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Mobile view */
+@media (max-width: 600px) {
+  .navbar {
+    padding: 0 15px;
+  }
+  .nav-links {
+    gap: 15px;
+  }
+  .user-status {
+    display: none; /* Hide username on small screens to save space */
+  }
+}

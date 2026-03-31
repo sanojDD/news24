@@ -1,0 +1,92 @@
+/* src/components/ReelCard.css */
+.reel-card {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: #000;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.sidebar {
+  position: absolute;
+  right: 15px;
+  bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.action-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.icon-button {
+  background: rgba(40, 40, 40, 0.6);
+  border: none;
+  border-radius: 50%;
+  padding: 12px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.icon-button:active {
+  transform: scale(1.2);
+}
+
+.icon-button.liked {
+  color: #ff2d55;
+}
+
+.bottom-overlay {
+  position: absolute;
+  bottom: 30px;
+  left: 15px;
+  width: 80%;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.username {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.caption {
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.music-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+}
+
+.spinning-disk {
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
