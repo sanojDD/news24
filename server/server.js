@@ -7,6 +7,7 @@ import dotenv from "dotenv";
 import reelRoutes from "./routes/reelRoutes.js";
 import contactRoutes from "./routes/contact.js";
 import authRoutes from "./routes/authRoutes.js";
+import newsRoutes from "./routes/newsRoutes.js";
 
 // Load Environment Variables
 dotenv.config();
@@ -44,6 +45,7 @@ app.use(express.json()); // Parses incoming JSON requests
 
 // --- 4. ROUTES MIDDLEWARE ---
 app.use("/api/auth", authRoutes);
+app.use("/api/news", newsRoutes);
 app.use("/api/reels", reelRoutes);
 app.use("/api/contact", contactRoutes);
 
