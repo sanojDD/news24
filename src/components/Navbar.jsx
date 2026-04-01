@@ -6,7 +6,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   // Get user data from localStorage
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem("user")) || null;
 
   const handleLogout = () => {
     localStorage.removeItem("token");

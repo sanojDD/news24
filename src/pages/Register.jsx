@@ -17,18 +17,22 @@ const Register = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+
+    // Define the dynamic base URL
+    const API_BASE_URL =
+      import.meta.env.VITE_API_URL || "http://localhost:5000";
+
     try {
-      // 1. Send data to your Backend
+      // Use the dynamic URL in the post request
       const res = await axios.post(
-        "http://localhost:5000/api/auth/register",
+        `${API_BASE_URL}/api/auth/register`,
         formData,
       );
 
-      // 2. If successful, show message and send to Login
+      // Success logic
       alert(res.data.message);
       navigate("/login");
     } catch (err) {
-      // 3. Handle errors (like "User already exists")
       alert(err.response?.data?.message || "Registration failed");
     }
   };

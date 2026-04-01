@@ -11,7 +11,7 @@ const AddReel = () => {
   const [caption, setCaption] = useState("");
   const [isUploading, setIsUploading] = useState(false);
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem("user")) || {};
 
   // --- 1. REMOVED handleUploadSuccess (Logic is now in handleUpload) ---
 
@@ -31,6 +31,10 @@ const AddReel = () => {
   };
 
   const handleUpload = async () => {
+    if (!user.username) {
+      alert("Please login first to upload a reel!");
+      return;
+    }
     if (!videoFile) return;
 
     setIsUploading(true);

@@ -10,19 +10,25 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    // 1. Define the dynamic URL
+    const API_BASE_URL =
+      import.meta.env.VITE_API_URL || "http://localhost:5000";
+
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", {
+      // 2. Use the dynamic URL in the post request
+      const res = await axios.post(`${API_BASE_URL}/api/auth/login`, {
         email,
         password,
       });
 
-      // SAVE THE TOKEN: This is the most important part!
+      // SAVE THE TOKEN
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
 
       alert("Welcome back!");
-      navigate("/"); // Send user back to home page
-      window.location.reload(); // Refresh to update Navbar
+      navigate("/");
+      window.location.reload();
     } catch (err) {
       alert(err.response?.data?.message || "Login failed");
     }

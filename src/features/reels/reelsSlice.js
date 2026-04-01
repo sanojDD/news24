@@ -1,32 +1,31 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/reels";
+const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const REELS_API = `${BASE_URL}/api/reels`;
 
 // 1. The "Fetch" Thunk: Gets all videos from MongoDB
 export const fetchReels = createAsyncThunk("reels/fetchReels", async () => {
-  const response = await axios.get(API_URL);
+  const response = await axios.get(REELS_API);
   return response.data;
 });
 
-// 2. NEW: The "Post" Thunk: Sends new video data to MongoDB
+// 2. The "Post" Thunk
 export const postNewReel = createAsyncThunk(
   "reels/postNewReel",
   async (reelData) => {
-    const response = await axios.post(API_URL, reelData);
-    return response.data; // This is the reel saved in DB (includes the new _id)
+    const response = await axios.post(REELS_API, reelData);
+    return response.data;
   },
 );
 
-// 3. The "Like" Thunk: Updates the like count in MongoDB
+// 3. The "Like" Thunk (FIXED: Removed localhost)
 export const likeReel = createAsyncThunk(
   "reels/likeReel",
   async ({ id, username }) => {
     const response = await axios.put(
-      `http://localhost:5000/api/reels/${id}/like`,
-      {
-        username, // Send "Sanoj_Dev" to the server
-      },
+      `${REELS_API}/${id}/like`, // Correctly uses the dynamic URL
+      { username },
     );
     return response.data;
   },

@@ -14,11 +14,15 @@ const About = () => {
         .required("Required"),
     }),
     onSubmit: async (values, { resetForm }) => {
+      const API_BASE_URL =
+        import.meta.env.VITE_API_URL || "http://localhost:5000";
+
       try {
         const response = await axios.post(
-          "http://localhost:5000/api/contact",
+          `${API_BASE_URL}/api/contact`,
           values,
         );
+
         if (response.status === 201) {
           alert("Message sent successfully!");
           resetForm();
@@ -28,7 +32,6 @@ const About = () => {
           "Submission Error Details:",
           err.response?.data || err.message,
         );
-
         alert("Failed to send message. Please try again later.");
       }
     },
