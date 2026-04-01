@@ -18,18 +18,20 @@ const PORT = process.env.PORT || 5000;
 // This allows your local dev environment AND your future live site to talk to the API
 const allowedOrigins = [
   "http://localhost:5173", // Local Vite Frontend
-  "https://your-tuktuk-frontend.vercel.app", // Placeholder for your future live URL
+  "https://news24-virid.vercel.app", // Placeholder for your future live URL
 ];
 
 app.use(
   cors({
     origin: function (origin, callback) {
-      // Allow requests with no origin (like Postman, mobile apps, or server-to-server)
+      // Allow requests with no origin (like Postman or server-to-server)
       if (!origin) return callback(null, true);
 
       if (allowedOrigins.indexOf(origin) !== -1) {
         callback(null, true);
       } else {
+        // Log the blocked origin to help you debug in Render logs
+        console.log("Blocked by CORS:", origin);
         callback(new Error("CORS policy blocked this request"), false);
       }
     },
